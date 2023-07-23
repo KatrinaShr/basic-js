@@ -15,9 +15,8 @@ function getSeason(date) {
   const season = ['spring', 'summer', 'autumn', 'winter'];
 
   if (date === undefined) { return "Unable to determine the time of year!"; } 
+  if (!(date instanceof Date) || !(date instanceof Object) || date.hasOwnProperty.length === 0) { throw new Error("Invalid date!"); } 
 
-  if (!date instanceof Date || !date instanceof Object || date.hasOwnProperty.length === 0) { throw new Error("Invalid date!"); }
-  
   try { 
     date.toLocaleString();
   }
@@ -31,7 +30,7 @@ function getSeason(date) {
   if (month === 5 || month === 6 || month === 7) { return season[1]; }
   if (month ===  8 || month === 9 || month === 10) { return season[2]; }
 
-} 
+}
 
 module.exports = {
   getSeason
