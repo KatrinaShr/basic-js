@@ -23,9 +23,99 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function minesweeper(matrix) {
+  let res = matrix.map((item) => []);
+
+  for (let i = 0; i < matrix.length; i++) {
+    for (let k = 0; k < matrix[i].length; k++) {
+      let count = 0;
+      //first item
+      if (k === 0) {
+        if (matrix[i - 1] && matrix[i - 1][k] === true) {
+          count++;
+        }
+
+        if (matrix[i - 1] && matrix[i - 1][k+1] === true) {
+          count++;
+        }
+       
+        if (matrix[i][k + 1] === true) {
+          count++;
+        }
+
+        if (matrix[i + 1] && matrix[i + 1][k+1] === true) {
+          count++;
+        }
+
+        if (matrix[i + 1] && matrix[i + 1][k] === true) {
+          count++;
+        }
+
+        res[i].push(count);
+      } 
+      //between 0 and last item
+      else if (k !== matrix[i].length) {
+        if (matrix[i - 1] && matrix[i - 1][k - 1] === true) {
+          count++;
+        }
+
+        if (matrix[i - 1] && matrix[i - 1][k] === true) {
+          count++;
+        }
+
+        if (matrix[i - 1] && matrix[i - 1][k + 1] === true) {
+          count++;
+        }
+
+        if (matrix[i][k + 1] === true) {
+          count++;
+        }
+
+        if (matrix[i + 1] && matrix[i + 1][k + 1] === true) {
+          count++;
+        }
+
+        if (matrix[i + 1] && matrix[i + 1][k] === true) {
+          count++;
+        }
+
+        if (matrix[i + 1] && matrix[i + 1][k - 1] === true) {
+          count++;
+        }
+
+        if (matrix[i][k - 1] === true) {
+          count++;
+        }
+
+        res[i].push(count);
+      } 
+      // last item
+      else {
+        if (matrix[i - 1] && matrix[i - 1][k - 1] === true) {
+          count++;
+        }
+
+        if (matrix[i - 1] && matrix[i - 1][k] === true) {
+          count++;
+        }
+
+        if (matrix[i + 1] && matrix[i + 1][k] === true) {
+          count++;
+        }
+
+        if (matrix[i + 1] && matrix[i + 1][k - 1] === true) {
+          count++;
+        }
+
+        if (matrix[i][k - 1] === true) {
+          count++;
+        }
+
+        res[i].push(count);
+      }
+    }
+  }
+  return res;
 }
 
 module.exports = {
